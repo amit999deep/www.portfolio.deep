@@ -15,7 +15,6 @@
 <link rel="stylesheet" href="port.css">
 
 <style>
-  /* Mobile-first responsive adjustments */
   * {
     box-sizing: border-box;
   }
@@ -24,9 +23,164 @@
     margin: 0;
     padding: 0;
     font-family: 'Poppins', sans-serif;
+    position: relative;
+    overflow-x: hidden;
   }
 
-  /* Hero responsive */
+  /* ===== BUBBLE BACKGROUND CONTAINER ===== */
+  .background-bubbles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+  }
+
+  .bubble {
+    position: absolute;
+    bottom: -100px;
+    background: radial-gradient(circle at 30% 30%, rgba(0, 255, 213, 0.8), rgba(0, 212, 255, 0.3));
+    border-radius: 50%;
+    opacity: 0.6;
+    animation: float-up 12s infinite ease-in;
+    filter: blur(1px);
+    box-shadow: 0 0 20px rgba(0, 255, 213, 0.4), inset -2px -2px 5px rgba(0, 0, 0, 0.3);
+  }
+
+  .bubble:nth-child(1) {
+    width: 80px;
+    height: 80px;
+    left: 10%;
+    animation: float-up 15s infinite ease-in;
+    animation-delay: 0s;
+    background: radial-gradient(circle at 30% 30%, rgba(0, 255, 213, 0.7), rgba(0, 212, 255, 0.2));
+  }
+
+  .bubble:nth-child(2) {
+    width: 60px;
+    height: 60px;
+    left: 20%;
+    animation: float-up 18s infinite ease-in;
+    animation-delay: 2s;
+    background: radial-gradient(circle at 30% 30%, rgba(0, 212, 255, 0.7), rgba(0, 255, 213, 0.2));
+  }
+
+  .bubble:nth-child(3) {
+    width: 100px;
+    height: 100px;
+    left: 30%;
+    animation: float-up 20s infinite ease-in;
+    animation-delay: 4s;
+    background: radial-gradient(circle at 30% 30%, rgba(0, 255, 213, 0.6), rgba(0, 212, 255, 0.3));
+  }
+
+  .bubble:nth-child(4) {
+    width: 50px;
+    height: 50px;
+    left: 50%;
+    animation: float-up 16s infinite ease-in;
+    animation-delay: 1s;
+    background: radial-gradient(circle at 30% 30%, rgba(0, 212, 255, 0.8), rgba(0, 255, 213, 0.1));
+  }
+
+  .bubble:nth-child(5) {
+    width: 90px;
+    height: 90px;
+    left: 70%;
+    animation: float-up 19s infinite ease-in;
+    animation-delay: 3s;
+    background: radial-gradient(circle at 30% 30%, rgba(0, 255, 213, 0.65), rgba(0, 212, 255, 0.25));
+  }
+
+  .bubble:nth-child(6) {
+    width: 70px;
+    height: 70px;
+    left: 80%;
+    animation: float-up 17s infinite ease-in;
+    animation-delay: 2.5s;
+    background: radial-gradient(circle at 30% 30%, rgba(0, 212, 255, 0.75), rgba(0, 255, 213, 0.15));
+  }
+
+  .bubble:nth-child(7) {
+    width: 110px;
+    height: 110px;
+    left: 15%;
+    animation: float-up 21s infinite ease-in;
+    animation-delay: 5s;
+    background: radial-gradient(circle at 30% 30%, rgba(0, 255, 213, 0.5), rgba(0, 212, 255, 0.4));
+  }
+
+  .bubble:nth-child(8) {
+    width: 65px;
+    height: 65px;
+    left: 85%;
+    animation: float-up 18.5s infinite ease-in;
+    animation-delay: 1.5s;
+    background: radial-gradient(circle at 30% 30%, rgba(0, 212, 255, 0.7), rgba(0, 255, 213, 0.2));
+  }
+
+  .bubble:nth-child(9) {
+    width: 75px;
+    height: 75px;
+    left: 55%;
+    animation: float-up 19.5s infinite ease-in;
+    animation-delay: 3.5s;
+    background: radial-gradient(circle at 30% 30%, rgba(0, 255, 213, 0.6), rgba(0, 212, 255, 0.3));
+  }
+
+  /* ===== BUBBLE ANIMATIONS ===== */
+  @keyframes float-up {
+    0% {
+      bottom: -100px;
+      opacity: 0;
+      transform: translateX(0) scale(0.8);
+    }
+    10% {
+      opacity: 0.6;
+      transform: translateX(0) scale(1);
+    }
+    50% {
+      opacity: 0.6;
+    }
+    90% {
+      opacity: 0;
+      transform: translateX(50px) scale(0.9);
+    }
+    100% {
+      bottom: 110vh;
+      opacity: 0;
+      transform: translateX(100px) scale(0.7);
+    }
+  }
+
+  @keyframes bubble-wobble {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-10px); }
+    75% { transform: translateX(10px); }
+  }
+
+  @keyframes bubble-pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+  }
+
+  @keyframes bubble-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(0, 255, 213, 0.4), inset -2px -2px 5px rgba(0, 0, 0, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(0, 255, 213, 0.8), inset -2px -2px 5px rgba(0, 0, 0, 0.5);
+    }
+  }
+
+  /* Optional: Add wobble effect to bubbles */
+  .bubble {
+    animation: float-up 12s infinite ease-in, bubble-wobble 4s infinite ease-in-out;
+  }
+
   .hero {
     padding: 2rem 1rem;
     text-align: center;
@@ -35,6 +189,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: 10;
   }
 
   .hero h1 {
@@ -55,11 +211,12 @@
     margin-bottom: 1rem;
   }
 
-  /* Section responsive */
   section {
     padding: 2rem 1rem;
     max-width: 1200px;
     margin: 0 auto;
+    position: relative;
+    z-index: 10;
   }
 
   section h2 {
@@ -68,7 +225,6 @@
     margin-bottom: 2rem;
   }
 
-  /* Skills grid - mobile first */
   .skills {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -92,7 +248,6 @@
     font-size: 2rem;
   }
 
-  /* Projects grid - mobile first */
   .projects {
     display: grid;
     grid-template-columns: 1fr;
@@ -115,7 +270,6 @@
     margin: 0;
   }
 
-  /* Contact section */
   .contact-links {
     display: flex;
     flex-direction: column;
@@ -147,14 +301,147 @@
     word-break: break-word;
   }
 
-  /* Footer */
   footer {
     text-align: center;
     padding: 2rem 1rem;
     font-size: 0.9rem;
+    position: relative;
+    z-index: 10;
   }
 
-  /* Tablet screens (768px and up) */
+  /* ===== VIDEO MODAL STYLES ===== */
+  .video-modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(5px);
+    animation: fadeIn 0.3s ease-in-out;
+  }
+
+  .video-modal.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .video-modal-content {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    padding: 2rem;
+    border-radius: 20px;
+    max-width: 90%;
+    width: 100%;
+    max-height: 90vh;
+    position: relative;
+    border: 1px solid rgba(0, 255, 213, 0.2);
+    box-shadow: 0 20px 60px rgba(0, 255, 213, 0.3);
+    animation: slideInScale 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+
+  .video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+  }
+
+  .video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+  }
+
+  .video-container video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 15px;
+    display: none;
+  }
+
+  .modal-close {
+    position: absolute;
+    right: 1.5rem;
+    top: 1.5rem;
+    background: rgba(0, 255, 213, 0.2);
+    color: #00ffd5;
+    border: 2px solid #00ffd5;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2001;
+  }
+
+  .modal-close:hover {
+    background: rgba(0, 255, 213, 0.4);
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 0 20px rgba(0, 255, 213, 0.6);
+  }
+
+  /* Project hover effect for interactivity indication */
+  .project {
+    cursor: pointer;
+    position: relative;
+  }
+
+  .project::before {
+    content: '▶ Click to view';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    background: rgba(0, 255, 213, 0.9);
+    color: #000;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    z-index: 100;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    opacity: 0;
+  }
+
+  .project:hover::before {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+  }
+
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInScale {
+    0% {
+      opacity: 0;
+      transform: scale(0.8) translateY(-50px);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+
   @media (min-width: 768px) {
     .hero h1 {
       font-size: 2.5rem;
@@ -213,7 +500,6 @@
     }
   }
 
-  /* Desktop screens (1024px and up) */
   @media (min-width: 1024px) {
     .hero {
       min-height: 80vh;
@@ -256,7 +542,6 @@
     }
   }
 
-  /* Touch-friendly adjustments for mobile */
   @media (max-width: 768px) {
     .skill-card,
     .project,
@@ -270,9 +555,23 @@
     .contact-link {
       padding: 1.2rem;
     }
+
+    /* Reduce bubble size on mobile */
+    .bubble {
+      opacity: 0.3;
+    }
+
+    .bubble:nth-child(1) { width: 50px; height: 50px; }
+    .bubble:nth-child(2) { width: 40px; height: 40px; }
+    .bubble:nth-child(3) { width: 60px; height: 60px; }
+    .bubble:nth-child(4) { width: 35px; height: 35px; }
+    .bubble:nth-child(5) { width: 55px; height: 55px; }
+    .bubble:nth-child(6) { width: 45px; height: 45px; }
+    .bubble:nth-child(7) { width: 65px; height: 65px; }
+    .bubble:nth-child(8) { width: 42px; height: 42px; }
+    .bubble:nth-child(9) { width: 48px; height: 48px; }
   }
 
-  /* Disable mouse effects on touch devices */
   @media (hover: none) {
     .skill-card:hover,
     .project:hover {
@@ -283,14 +582,23 @@
 
 </head>
 <body>
+<!-- ===== BUBBLE BACKGROUND ===== -->
+<div class="background-bubbles">
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+</div>
 
-<!-- HERO -->
 <div class="hero">
   <h1>Deep <span>Rudra Paul</span></h1>
   <p>Video Editor • Creative Visuals • Motion Storytelling</p>
 </div>
-
-<!-- ABOUT -->
 <section class="reveal">
   <h2>About Me</h2>
   <p>
@@ -328,31 +636,53 @@
 
   </div>
 </section>
-
-<!-- PROJECTS -->
 <section class="reveal">
   <h2>Projects</h2>
   <div class="projects">
 
-    <div class="project">
-      <h3>YouTube Video Edit</h3>
-      <p>Cinematic cuts, color grading, and sound design.</p>
+    <div class="project" data-video="videos/project-youtube.mp4" data-type="mp4">
+      <div class="project-logo">
+        <i class="fab fa-youtube"></i>
+      </div>
+      <h3>YouTube Video Edit (MP4)</h3>
+      <p>Cinematic cuts, color grading, and sound design — MP4 sample.</p>
+      <span class="play-icon"><i class="fas fa-play"></i></span>
     </div>
 
-    <div class="project">
+    <div class="project" data-video="instargarm.mp4" data-type="instagram">
+    <div class="project" data-video="https://www.instagram.com/reel/DQg-5W-kTLF/" data-type="instagram"></div>
+      <source src="instargarm.mp4" type="audio/mpeg">
+      <div class="project-logo">
+        <i class="fab fa-instagram"></i>
+      </div>
       <h3>Instagram Reels</h3>
       <p>Fast-paced edits with modern transitions.</p>
+      <span class="play-icon"><i class="fas fa-play"></i></span>
     </div>
 
-    <div class="project">
-      <h3>Thumbnail Design</h3>
-      <p>High-click thumbnails using Photoshop & Canva.</p>
+    <div class="project" data-video="videos/project-thumbnail-process.mp4" data-type="mp4">
+      <div class="project-logo">
+        <i class="fas fa-image"></i>
+      </div>
+      <h3>Thumbnail Design (MP4)</h3>
+      <p>Thumbnail creation timelapse — MP4 sample.</p>
+      <span class="play-icon"><i class="fas fa-play"></i></span>
     </div>
 
   </div>
 </section>
 
-<!-- CONTACT -->
+<!-- VIDEO MODAL (supports iframe embeds + MP4 playback) -->
+<div id="video-modal" class="video-modal">
+  <div class="video-modal-content">
+    <button class="modal-close" id="modal-close">&times;</button>
+    <div class="video-container">
+      <iframe id="video-iframe" width="100%" height="600" src="" frameborder="0" allowfullscreen style="display:none;"></iframe>
+      <video id="video-player" controls playsinline style="width:100%; height:100%; display:none; border-radius:15px; background:#000;"></video>
+    </div>
+  </div>
+</div>
+
 <section class="contact reveal">
   <h2>Contact</h2>
   <div class="contact-links">
@@ -376,14 +706,11 @@
 </footer>
 
 <script>
-// ===== DETECT TOUCH DEVICE =====
 const isTouchDevice = () => {
     return (('ontouchstart' in window) ||
             (navigator.maxTouchPoints > 0) ||
             (navigator.msMaxTouchPoints > 0));
 };
-
-// ===== ADD RIPPLE ANIMATION KEYFRAME =====
 const addRippleStyle = () => {
     const style = document.createElement('style');
     style.textContent = `
@@ -401,8 +728,6 @@ const addRippleStyle = () => {
     document.head.appendChild(style);
 };
 addRippleStyle();
-
-// ===== SMOOTH SCROLL REVEAL ANIMATIONS =====
 const reveals = document.querySelectorAll('.reveal');
 
 const observer = new IntersectionObserver((entries) => {
@@ -414,8 +739,6 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1 });
 
 reveals.forEach(section => observer.observe(section));
-
-// ===== PROFILE PHOTO LOADER =====
 document.addEventListener('DOMContentLoaded', () => {
     const hero = document.querySelector('.hero');
     if (!hero) return;
@@ -427,7 +750,6 @@ document.addEventListener('DOMContentLoaded', () => {
     hero.insertBefore(img, hero.firstChild);
 });
 
-// ===== KEYBOARD NAVIGATION =====
 document.addEventListener('keydown', (e) => {
     if(e.key === 'ArrowDown') {
         window.scrollBy({ top: 100, behavior: 'smooth' });
@@ -436,7 +758,6 @@ document.addEventListener('keydown', (e) => {
     }
 });
 
-// ===== PRELOAD IMAGES =====
 const preloadImages = () => {
     const images = ['deep.jpg'];
     images.forEach(src => {
@@ -447,22 +768,18 @@ const preloadImages = () => {
 
 preloadImages();
 
-// ===== CONSOLE EASTER EGG =====
 console.log('%cHey there! 👋', 'font-size: 20px; color: #00ffd5; font-weight: bold;');
 console.log('%cDeep Rudra Paul - Video Editor Portfolio', 'font-size: 14px; color: #00d4ff;');
 console.log('%cWant to collaborate? Contact me!', 'color: #00ffd5;');
 
-// ===== CONTACT LINKS GLASS EFFECT HANDLER =====
 const contactLinks = document.querySelectorAll('.contact-link');
 
 contactLinks.forEach(link => {
-    // Add ripple effect on click
     link.addEventListener('click', function(e) {
         if(!this.href.startsWith('mailto:') && !this.href.startsWith('https://')) {
             return;
         }
         
-        // Create ripple effect
         const ripple = document.createElement('span');
         const rect = this.getBoundingClientRect();
         const size = Math.max(rect.width, rect.height);
@@ -488,7 +805,6 @@ contactLinks.forEach(link => {
         setTimeout(() => ripple.remove(), 600);
     });
     
-    // Add glow effect on hover (desktop only)
     if(!isTouchDevice()) {
         link.addEventListener('mouseenter', function() {
             this.style.boxShadow = `
@@ -506,7 +822,6 @@ contactLinks.forEach(link => {
     }
 });
 
-// ===== COPY EMAIL TO CLIPBOARD (Mobile & Desktop friendly) =====
 document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
     link.addEventListener('click', function(e) {
         const email = this.getAttribute('href').replace('mailto:', '');
@@ -528,16 +843,13 @@ document.querySelectorAll('a[href^="mailto:"]').forEach(link => {
     });
 });
 
-// ===== INSTAGRAM LINK HANDLER =====
 const instagramLink = document.querySelector('.instagram-link');
 if(instagramLink) {
     instagramLink.addEventListener('click', function(e) {
-        // Optional: Add analytics or tracking here
         console.log('Opening Instagram profile...');
     });
 }
 
-// ===== MOUSE FOLLOW GLOW EFFECT (Desktop only) =====
 if(!isTouchDevice()) {
     document.addEventListener('mousemove', (e) => {
         const links = document.querySelectorAll('.contact-link');
@@ -553,7 +865,6 @@ if(!isTouchDevice()) {
     });
 }
 
-// ===== SCROLL PROGRESS BAR =====
 const createProgressBar = () => {
     const bar = document.createElement('div');
     bar.id = 'scroll-progress';
@@ -573,7 +884,6 @@ const createProgressBar = () => {
 
 createProgressBar();
 
-// ===== PERFORMANCE OPTIMIZATION - SCROLL PROGRESS =====
 let ticking = false;
 window.addEventListener('scroll', () => {
     if(!ticking) {
@@ -589,7 +899,6 @@ window.addEventListener('scroll', () => {
     }
 });
 
-// ===== STAGGER ANIMATION FOR SKILL CARDS =====
 window.addEventListener('load', () => {
     const skillCards = document.querySelectorAll('.skill-card');
     skillCards.forEach((card, index) => {
@@ -602,14 +911,12 @@ window.addEventListener('load', () => {
     });
 });
 
-// ===== OPEN GMAIL ON CTRL+SHIFT+G (Desktop only) =====
 document.addEventListener('keydown', (e) => {
     if(e.ctrlKey && e.shiftKey && e.key === 'G') {
         window.open('https://mail.google.com', '_blank');
     }
 });
 
-// ===== CONTACT LINK ANIMATIONS =====
 const addContactLinkAnimations = () => {
     const gmailLink = document.querySelector('.gmail-link');
     const instagramLink = document.querySelector('.instagram-link');
@@ -639,14 +946,12 @@ const addContactLinkAnimations = () => {
     }
 };
 
-// Initialize contact link animations when DOM is ready
 if(document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', addContactLinkAnimations);
 } else {
     addContactLinkAnimations();
 }
 
-// ===== ADD RIPPLE ANIMATION KEYFRAME =====
 const style = document.createElement('style');
 style.textContent = `
     @keyframes ripple-animation {
@@ -662,7 +967,6 @@ style.textContent = `
 `;
 document.head.appendChild(style);
 
-// ===== TOUCH DEVICE OPTIMIZATIONS =====
 if(isTouchDevice()) {
     contactLinks.forEach(link => {
         link.addEventListener('touchstart', function() {
@@ -675,7 +979,6 @@ if(isTouchDevice()) {
     });
 }
 
-// ===== PERFORMANCE MONITORING =====
 if(window.performance && window.performance.timing) {
     window.addEventListener('load', function() {
         const perfData = window.performance.timing;
@@ -684,7 +987,6 @@ if(window.performance && window.performance.timing) {
     });
 }
 
-// ===== VISIBILITY CHANGE HANDLER =====
 document.addEventListener('visibilitychange', function() {
     if(document.hidden) {
         console.log('Page hidden - pausing animations');
@@ -695,7 +997,6 @@ document.addEventListener('visibilitychange', function() {
     }
 });
 
-// ===== SMOOTH SCROLL BEHAVIOR =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function(e) {
         e.preventDefault();
@@ -709,7 +1010,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ===== LAZY LOAD IMAGES =====
 if('IntersectionObserver' in window) {
     const imgObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -727,8 +1027,72 @@ if('IntersectionObserver' in window) {
     });
 }
 
-</script>
+/* ===== VIDEO MODAL FUNCTIONALITY ===== */
+const videoModal = document.getElementById('video-modal');
+const videoIframe = document.getElementById('video-iframe');
+const videoPlayer = document.getElementById('video-player');
+const modalClose = document.getElementById('modal-close');
+const projectCards = document.querySelectorAll('.project');
 
+projectCards.forEach(project => {
+  project.addEventListener('click', function() {
+    const videoSrc = this.getAttribute('data-video');
+    const type = this.getAttribute('data-type');
+
+    // If the project is an Instagram post/reel, open in a new tab instead of embedding
+    if (type === 'instagram') {
+      if (videoSrc) {
+        window.open(videoSrc, '_blank', 'noopener,noreferrer');
+      }
+      return;
+    }
+    
+    if (videoSrc) {
+      videoIframe.src = videoSrc;
+      videoPlayer.src = videoSrc;
+      videoModal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+  });
+});
+
+if (modalClose) {
+  modalClose.addEventListener('click', function() {
+    closeVideoModal();
+  });
+}
+
+if (videoModal) {
+  videoModal.addEventListener('click', function(e) {
+    if (e.target === videoModal) {
+      closeVideoModal();
+    }
+  });
+}
+
+function closeVideoModal() {
+  if (videoModal) {
+    videoModal.classList.remove('active');
+  }
+  if (videoIframe) {
+    videoIframe.src = '';
+  }
+  if (videoPlayer) {
+    videoPlayer.src = '';
+  }
+  document.body.style.overflow = 'auto';
+}
+
+// Close modal with Escape key
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape' && videoModal && videoModal.classList.contains('active')) {
+    closeVideoModal();
+  }
+});
+</script>
+<script src="script.js"></script>
+<script type="module" src="main.js" defer></script>
+<script nomodule src="main-legacy.js" defer></script>
 </body>
 </html>
 
