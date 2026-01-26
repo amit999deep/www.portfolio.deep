@@ -708,19 +708,6 @@
       </a>
     </div>
   </div>
-    <!-- File upload widget -->
-    <div class="file-upload">
-      <label for="file-input" class="upload-label">Send a file</label>
-      <div class="upload-controls">
-        <input id="file-input" type="file" aria-label="Upload file">
-        <button id="upload-btn" class="upload-btn">Upload</button>
-      </div>
-      <div class="upload-info" id="upload-info" aria-live="polite"></div>
-      <div class="upload-progress" id="upload-progress" aria-hidden="true">
-        <div class="upload-progress-bar" id="upload-progress-bar"></div>
-      </div>
-      <a id="uploaded-file-link" class="uploaded-file-link" style="display:none;" download>Download uploaded file</a>
-    </div>
 </section>
 
 <footer>
@@ -1132,76 +1119,6 @@ document.addEventListener('keydown', function(e) {
     closeVideoModal();
   }
 });
-
-// File upload client-side handler
-(function() {
-  const fileInput = document.getElementById('file-input');
-  const uploadBtn = document.getElementById('upload-btn');
-  const info = document.getElementById('upload-info');
-  const progressBar = document.getElementById('upload-progress-bar');
-  const uploadedLink = document.getElementById('uploaded-file-link');
-  let currentFileBlob = null;
-
-  function resetUploadState() {
-    if (progressBar) progressBar.style.width = '0%';
-    if (info) info.textContent = '';
-    if (uploadedLink) { uploadedLink.style.display = 'none'; uploadedLink.removeAttribute('href'); }
-    currentFileBlob = null;
-  }
-
-  if (!fileInput || !uploadBtn) return;
-
-  fileInput.addEventListener('change', function() {
-    const f = this.files && this.files[0];
-    if (f) {
-      if (info) info.textContent = `Selected: ${f.name} — ${Math.round(f.size/1024)} KB`;
-      uploadBtn.disabled = false;
-    } else {
-      resetUploadState();
-      uploadBtn.disabled = true;
-    }
-  });
-
-  uploadBtn.addEventListener('click', function() {
-    const f = fileInput.files && fileInput.files[0];
-    if (!f) {
-      showToast && showToast('Please choose a file first');
-      return;
-    }
-
-    uploadBtn.disabled = true;
-    if (info) info.textContent = 'Uploading...';
-    let progress = 0;
-    if (progressBar) progressBar.style.width = '0%';
-
-    const interval = setInterval(() => {
-      progress += Math.random() * 18 + 8;
-      if (progress >= 100) progress = 100;
-      if (progressBar) progressBar.style.width = progress + '%';
-      if (progress >= 100) {
-        clearInterval(interval);
-        currentFileBlob = f;
-        try {
-          const url = URL.createObjectURL(f);
-          uploadedLink.href = url;
-          uploadedLink.style.display = 'inline-block';
-          uploadedLink.textContent = 'Download ' + f.name;
-          if (info) info.textContent = 'Upload complete — file ready to download';
-          showToast && showToast('File uploaded successfully');
-        } catch (err) {
-          if (info) info.textContent = 'Upload finished';
-        }
-        uploadBtn.disabled = false;
-      }
-    }, 220);
-  });
-
-  window.addEventListener('beforeunload', function() {
-    if (uploadedLink && uploadedLink.href) {
-      try { URL.revokeObjectURL(uploadedLink.href); } catch (e) {}
-    }
-  });
-})();
 </script>
 <script src="script.js"></script>
 <script type="module" src="main.js" defer></script>
