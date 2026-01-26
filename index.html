@@ -635,7 +635,7 @@
   <h2>Projects</h2>
   <div class="projects">
 
-    <div class="project" data-video="videos/project-youtube.mp4" data-type="mp4">
+    <div class="project coming-soon" data-video="videos/project-youtube.mp4" data-type="mp4">
       <div class="project-logo">
         <i class="fab fa-youtube"></i>
       </div>
@@ -655,7 +655,7 @@
       <span class="play-icon"><i class="fas fa-play"></i></span>
     </div>
 
-    <div class="project" data-video="videos/project-thumbnail-process.mp4" data-type="mp4">
+    <div class="project coming-soon" data-video="videos/project-thumbnail-process.mp4" data-type="mp4">
       <div class="project-logo">
         <i class="fas fa-image"></i>
       </div>
@@ -678,6 +678,14 @@
   </div>
 </div>
 
+<!-- TOAST: animated notice for coming-soon projects -->
+<div id="toast" class="toast" aria-live="polite" aria-atomic="true">
+  <div class="toast-inner">
+    <i class="fas fa-clock toast-icon" aria-hidden="true"></i>
+    <div class="toast-text">Video upload coming soon!</div>
+  </div>
+</div>
+
 <section class="contact reveal">
   <h2>Contact</h2>
   <div class="contact-links">
@@ -691,6 +699,12 @@
       <a href="https://instagram.com/deep__paul__88" target="_blank" class="contact-link instagram-link">
         <i class="fab fa-instagram"></i>
         <span>@deep__paul__88</span>
+      </a>
+    </div>
+    <div class="contact-item">
+      <a href="https://www.linkedin.com/in/deep-paul-647b632b9" target="_blank" class="contact-link linkedin-link">
+        <i class="fab fa-linkedin"></i>
+        <span>Deep Rudra Paul</span>
       </a>
     </div>
   </div>
@@ -1029,8 +1043,29 @@ const videoPlayer = document.getElementById('video-player');
 const modalClose = document.getElementById('modal-close');
 const projectCards = document.querySelectorAll('.project');
 
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  if (!toast) return;
+  const text = toast.querySelector('.toast-text');
+  if (text) text.textContent = message;
+  toast.classList.remove('hide');
+  toast.classList.add('show');
+  // Auto-hide after a moment
+  clearTimeout(window._toastTimeout);
+  window._toastTimeout = setTimeout(() => {
+    toast.classList.remove('show');
+    toast.classList.add('hide');
+  }, 2600);
+}
+
 projectCards.forEach(project => {
   project.addEventListener('click', function() {
+    // If this project is marked coming-soon, show animated toast instead
+    if (this.classList.contains('coming-soon')) {
+      showToast('Video uploading soon — stay tuned!');
+      return;
+    }
+
     const videoSrc = this.getAttribute('data-video');
     const type = this.getAttribute('data-type');
 
